@@ -47,6 +47,41 @@ def find_successor(root, key):
     return queue[0] if queue else None
 
 
+class TreeNodeLink:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right, self.next = None, None, None
+
+    # tree traversal using 'next' pointer
+    def print_tree(self):
+        print("Traversal using 'next' pointer: ", end='')
+        current = self
+        while current:
+            print(str(current.val) + " ", end='')
+            current = current.next
+
+
+def connect_all_siblings(root):
+    # TODO: Write your code here
+    queue = []
+    queue.append(root)
+    prev = None
+
+    while queue:
+        node = queue.pop(0)
+        if prev:
+            prev.next = node
+        prev = node
+
+        if node.left:
+            queue.append(node.left)
+
+        if node.right:
+            queue.append(node.right)
+
+    return
+
+
 if __name__ == '__main__':
     root = TreeNode(12)
     root.left = TreeNode(7)

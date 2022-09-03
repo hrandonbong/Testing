@@ -82,6 +82,28 @@ def connect_all_siblings(root):
     return
 
 
+def tree_right_view(root):
+    result = []
+    queue = []
+    queue.append(root)
+
+    while queue:
+        size = len(queue)
+
+        for i in range(size):
+            node = queue.pop(0)
+            if i == size - 1:
+                result.append(node)
+
+            if node.left:
+                queue.append(node.left)
+
+            if node.right:
+                queue.append(node.right)
+    # TODO: Write your code here
+    return result
+
+
 if __name__ == '__main__':
     root = TreeNode(12)
     root.left = TreeNode(7)

@@ -81,7 +81,6 @@ def connect_all_siblings(root):
 
     return
 
-
 def tree_right_view(root):
     result = []
     queue = []
@@ -102,6 +101,16 @@ def tree_right_view(root):
                 queue.append(node.right)
     # TODO: Write your code here
     return result
+
+def has_path(root, sum):
+  # TODO: Write your code here
+  if root is None:
+    return False
+
+  if root.val == sum and root.left is None and root.right is None:
+    return True
+
+  return has_path(root.left,sum - root.val) or has_path(root.right, sum - root.val)
 
 
 if __name__ == '__main__':

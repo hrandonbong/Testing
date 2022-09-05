@@ -62,6 +62,42 @@ def sum_helper(root, total):
 
     return sum_helper(root.left, total) + sum_helper(root.right, total)
 
+def find_path(root, sequence):
+  # TODO: Write your code here
+  return seq_path_helper(root,sequence,0)
+
+def seq_path_helper(current, seq, index):
+  if index >= len(seq) or current is None or current.val != seq[index]:
+    return False
+
+  if current.val == seq[index] and current.left is None and current.right is None:
+    return True
+
+  if current.val == seq[index]:
+    return seq_path_helper(current.left,seq,index + 1) or seq_path_helper(current.right,seq,index + 1)
+
+def count_paths(root, S):
+  # TODO: Write your code here
+  result = []
+  count_helper(root,S,result,[],S)
+  return len(result)
+
+def count_helper(root,S,result,path,origin_S):
+  if root is None:
+    return
+
+  path.append(root.val)
+  if S == root.val:
+    result.append(list(path))
+
+  if root.val > S:
+    S = origin_S
+    count_helper(root.left,S,result,[],origin_S)
+    count_helper(root.right,S,result,[],origin_S)
+  else:
+    count_helper(root.left,S-root.val,result,path,origin_S)
+    count_helper(root.right,S-root.val,result,path,origin_S)
+
 
 if __name__ == '__main__':
     root = TreeNode(12)

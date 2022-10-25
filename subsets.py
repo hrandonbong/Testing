@@ -86,19 +86,43 @@ def generate_valid_parentheses(num):
       if ps.openCount > ps.closeCount:  # if we can add a close parentheses, add it
         queue.append(ParenthesesString(ps.str + ")",
                                        ps.openCount, ps.closeCount + 1))
-
   return result
 
+
+def find_opp(arr):
+  dict = {}
+  result = []
+  for i in arr:
+    if i >= 0:
+      if not dict.get(i):
+        dict[i] = 0
+      dict[i] += 1
+    else:
+      if dict.get(abs(i)):
+        result.append(abs(i))
+  return result
+
+
 if __name__ == '__main__':
-  print("Here is the list of subsets: " + str(find_subsets([1, 3, 3])))
-  print("Here is the list of subsets: " + str(find_subsets([1, 5, 3, 3])))
+  # print("Here is the list of subsets: " + str(find_subsets([1, 3, 3])))
+  # print("Here is the list of subsets: " + str(find_subsets([1, 5, 3, 3])))
+  #
+  # print("Here are all the permutations: " + str(find_permutations([1, 3, 5])))
+  #
+  # print("String permutations are: " +
+  #       str(find_letter_case_string_permutations("ad52")))
+  # print("String permutations are: " +
+  #       str(find_letter_case_string_permutations("ab7c")))
+  #
+  # print("All combinations of balanced parentheses are: " +
+  #       str(generate_valid_parentheses(2)))
+  #
+  # print(find_permutation('odicf', 'dc'))
+  arr = [1,-1, 2, 3, 4, 5, 6, 7, 8, 9, -9]
+  print(find_opp(arr))
 
-  print("Here are all the permutations: " + str(find_permutations([1, 3, 5])))
+  dict = 0
+  if dict:
+    print('zero')
 
-  print("String permutations are: " +
-        str(find_letter_case_string_permutations("ad52")))
-  print("String permutations are: " +
-        str(find_letter_case_string_permutations("ab7c")))
 
-  print("All combinations of balanced parentheses are: " +
-        str(generate_valid_parentheses(2)))
